@@ -1,0 +1,692 @@
+ToFix:
+
+screenshots
+Kamera fixen
+raumstation model
+rennstrecken + savegames etc
+setinnersize
+setsize
+workaround für ringposition entfernen
+korrekte anwendung von ParticleSystemManager::getSingletonPtr()->
+
+toggler
+
+Projekt Umzug
+
+Character:
+
+Kamera:
+
+Crap:
+
+/*
+
+#include "ExampleApplication.h"
+
+ParticleSystem *pThrusters;
+
+// Generic Character class
+class Character {
+// Attributes ------------------------------------------------------------------------------
+	protected:
+		SceneNode *mMainNode; // Main character node
+		SceneNode *mSightNode; // "Sight" node - The character is supposed to be looking here
+		SceneNode *mCameraNode; // Node for the chase camera
+		Entity *mEntity; // Character entity
+		SceneManager *mSceneMgr;
+	public:
+// Methods ---------------------------------------------------------------------------------
+	protected:
+	public:
+		// Updates the character (movement...)
+		virtual void update (Real elapsedTime, InputReader *input) = 0;
+		// The three methods below returns the two camera-related nodes, 
+		// and the current position of the character (for the 1st person camera)
+		SceneNode *getSightNode () {
+			return mSightNode;
+		}
+		SceneNode *getCameraNode () {
+			return mCameraNode;
+		}
+		SceneNode *getMainNode()
+		{
+			return mMainNode;
+		}
+		Vector3 getWorldPosition () {
+			return mMainNode->getWorldPosition ();
+		}
+};
+
+// Specialization of the Character class - Our dear Ogre :D
+class OgreCharacter : public Character {
+// Attributes ------------------------------------------------------------------------------
+	protected:
+		String mName;
+		float mSpeed;
+	public:
+// Methods ---------------------------------------------------------------------------------
+	protected:
+	public:
+		OgreCharacter (String name, SceneManager *sceneMgr) {
+			// Setup basic member references
+			mName = name;
+			mSceneMgr = sceneMgr;
+			mSpeed = 0;
+
+			// Setup basic node structure to handle 3rd person cameras
+			mMainNode = mSceneMgr->getRootSceneNode ()->createChildSceneNode (mName);
+			mSightNode = mMainNode->createChildSceneNode (mName + "_sight", Vector3 (0, 0, 100));
+			mCameraNode = mMainNode->createChildSceneNode (mName + "_camera", Vector3 (0, 150, -300));
+
+			// Give this character a shape :)
+			mEntity = mSceneMgr->createEntity (mName, "razor.mesh");
+			mMainNode->attachObject (mEntity);
+			//Partikel
+        pThrusters = mSceneMgr->createParticleSystem( "ParticleSys1", 200 );
+
+        pThrusters ->setMaterialName( "Examples/Flare" );
+        pThrusters ->setDefaultDimensions( 25, 25 );
+
+        ParticleEmitter *pEmit1 = pThrusters ->addEmitter( "Point" );
+        ParticleEmitter *pEmit2 = pThrusters ->addEmitter( "Point" );
+
+        // Thruster 1
+        pEmit1->setAngle( Degree(3) );
+        pEmit1->setTimeToLive( 4 );
+        pEmit1->setEmissionRate( 25 );
+
+        pEmit1->setParticleVelocity( 100 );
+
+        pEmit1->setDirection( -Vector3::UNIT_Z);
+        pEmit1->setColour( ColourValue::White, ColourValue::Black);        
+
+        // Thruster 2
+        pEmit2->setAngle( Degree(3) );
+        pEmit2->setTimeToLive( 4 );
+        pEmit2->setEmissionRate( 25 );
+
+        pEmit2->setParticleVelocity( 75 );
+
+        pEmit2->setDirection( -Vector3::UNIT_Z );
+        pEmit2->setColour( ColourValue::Green, ColourValue::Blue );
+
+        // Set the position of the thrusters
+        pEmit1->setPosition( Vector3( 5.7f, 0.0f, 0.0f ) );
+        pEmit2->setPosition( Vector3( -18.0f, 0.0f, 0.0f ) );
+
+        mMainNode->createChildSceneNode( Vector3( 0.0f, 6.5f, -67.0f ) )->attachObject(pThrusters);
+
+		}
+		~OgreCharacter () {
+			mMainNode->detachAllObjects ();
+			delete mEntity;
+			mMainNode->removeAndDestroyAllChildren ();
+			mSceneMgr->destroySceneNode (mName);
+		}
+
+		void update (Real elapsedTime, InputReader *input) {
+			// Handle movement
+			if (input->isKeyDown (KC_UP)) {
+				mSpeed += 0.1 * elapsedTime;
+			}
+			if (input->isKeyDown (KC_DOWN)) {
+				mSpeed -= 0.1 * elapsedTime;
+			}
+			if (input->isKeyDown (KC_W)) {
+				mMainNode->pitch (Radian (2 * elapsedTime));
+			}
+			if (input->isKeyDown (KC_S)) {
+				mMainNode->pitch (Radian (-2 * elapsedTime));
+			}
+			if (input->isKeyDown (KC_A)) {
+				mMainNode->roll (Radian (-2 * elapsedTime));
+			}
+			if (input->isKeyDown (KC_D)) {
+				mMainNode->roll (Radian (2 * elapsedTime));
+			}
+			if (input->isKeyDown (KC_SPACE))
+			{
+				mSpeed = 0;
+			}
+			
+			mMainNode->translate (mMainNode->getOrientation () * Vector3 (0, 0, 300 * mSpeed * elapsedTime));
+		}
+
+		// Change visibility - Useful for 1st person view ;)
+		void setVisible (bool visible) {
+			mMainNode->setVisible (visible);
+		}
+};
+
+// Our extended camera class
+class ExtendedCamera {
+// Attributes ------------------------------------------------------------------------------
+	protected:
+		SceneNode *mTargetNode; // The camera target
+		SceneNode *mCameraNode; // The camera itself
+		Camera *mCamera; // Ogre camera
+
+		SceneManager *mSceneMgr;
+		String mName;
+
+		bool mOwnCamera; // To know if the ogre camera binded has been created outside or inside of this class
+
+		Real mTightness; // Determines the movement of the camera - 1 means tight movement, while 0 means no movement
+	public:
+// Methods ---------------------------------------------------------------------------------
+	protected:
+	public:
+		ExtendedCamera (String name, SceneManager *sceneMgr, Camera *camera = 0) {
+			// Basic member references setup
+			mName = name;
+			mSceneMgr = sceneMgr;
+
+			// Create the camera's node structure
+			mCameraNode = mSceneMgr->getRootSceneNode ()->createChildSceneNode (mName);
+			mTargetNode = mSceneMgr->getRootSceneNode ()->createChildSceneNode (mName + "_target");
+			mCameraNode->setAutoTracking (true, mTargetNode); // The camera will always look at the camera target
+			mCameraNode->setFixedYawAxis (true); // Needed because of auto tracking
+
+			// Create our camera if it wasn't passed as a parameter
+			if (camera == 0) {
+				mCamera = mSceneMgr->createCamera (mName);
+				mOwnCamera = true;
+			}
+			else {
+				mCamera = camera;
+				mOwnCamera = false;
+			}
+			// ... and attach the Ogre camera to the camera node
+			mCameraNode->attachObject (mCamera);
+
+			// Default tightness
+			mTightness = 0.1f;
+		}
+		~ExtendedCamera () {
+			mCameraNode->detachAllObjects ();
+			if (mOwnCamera)
+				delete mCamera;
+			mSceneMgr->destroySceneNode (mName);
+			mSceneMgr->destroySceneNode (mName + "_target");
+		}
+
+		void setTightness (Real tightness) {
+			mTightness = tightness;
+		}
+
+		Real getTightness () {
+			return mTightness;
+		}
+
+		Vector3 getCameraPosition () {
+			return mCameraNode->getPosition ();
+		}
+
+		void instantUpdate (Vector3 cameraPosition, Vector3 targetPosition) {
+			mCameraNode->setPosition (cameraPosition);
+			mTargetNode->setPosition (targetPosition);
+		}
+
+		void update (Real elapsedTime, Vector3 cameraPosition, Vector3 targetPosition) {
+			// Handle movement
+			Vector3 displacement;
+
+			displacement = (cameraPosition - mCameraNode->getPosition ()) * mTightness;
+			mCameraNode->translate (displacement);
+
+			displacement = (targetPosition - mTargetNode->getPosition ()) * mTightness;
+			mTargetNode->translate (displacement);
+
+			
+		}
+};
+
+class SampleListener : public ExampleFrameListener
+{
+protected:
+	// References to the main character and the camera
+	Character *mChar;
+	ExtendedCamera *mExCamera;
+
+	// Camera mode - Now supports 1st person, 3rd person (chasing) and 3rd person (fixed)
+	unsigned int mMode;
+
+public:
+	SampleListener(RenderWindow* win, Camera* cam)
+	: ExampleFrameListener(win, cam)
+	{
+		mChar = 0;
+		mExCamera = 0;
+		mMode = 0;
+	}
+
+	void setCharacter (Character *character) {
+		mChar = character;
+	}
+
+	void setExtendedCamera (ExtendedCamera *cam) {
+		mExCamera = cam;
+	}
+
+	bool frameStarted(const FrameEvent& evt)
+	{
+		mInputDevice->capture ();
+
+		if (mChar) {
+			mChar->update (evt.timeSinceLastFrame, mInputDevice);
+
+			if (mExCamera) {
+				switch (mMode) {
+					case 0: // 3rd person chase
+						mExCamera->update (evt.timeSinceLastFrame, 
+											mChar->getCameraNode ()->getWorldPosition (), 
+											mChar->getSightNode ()->getWorldPosition ());
+						break;
+					case 1: // 3rd person fixed
+						mExCamera->update (evt.timeSinceLastFrame, 
+											Vector3 (0, 200, 0), 
+											mChar->getSightNode ()->getWorldPosition ());
+						break;
+					case 2: // 1st person
+						mExCamera->update (evt.timeSinceLastFrame, 
+											mChar->getWorldPosition (), 
+											mChar->getSightNode ()->getWorldPosition ());
+						break;
+				}
+			}
+		}
+
+		// 3rd Person - Chase Camera
+		if (mInputDevice->isKeyDown (KC_F1)) {
+			mMode = 0;
+			if (mChar)
+				static_cast<OgreCharacter *>(mChar)->setVisible (true);
+			if (mExCamera) {
+				if (mChar)
+					mExCamera->instantUpdate (mChar->getCameraNode ()->getWorldPosition (), mChar->getSightNode ()->getWorldPosition ());
+				mExCamera->setTightness (0.1f);
+			}
+ 		}
+		// 3rd Person - Fixed Camera
+		if (mInputDevice->isKeyDown (KC_F2)) {
+			mMode = 1;
+			if (mChar)
+				static_cast<OgreCharacter *>(mChar)->setVisible (true);
+			if (mExCamera) {
+				if (mChar)
+					mExCamera->instantUpdate (Vector3 (0, 200, 0), mChar->getSightNode ()->getWorldPosition ());
+				mExCamera->setTightness (0.1f);
+			}
+		}
+		// 1st Person
+		if (mInputDevice->isKeyDown (KC_F3)) {
+			mMode = 2;
+			if (mChar)
+				static_cast<OgreCharacter *>(mChar)->setVisible (false);
+			if (mExCamera) {
+				if (mChar)
+					mExCamera->instantUpdate (mChar->getWorldPosition (), mChar->getSightNode ()->getWorldPosition ());
+				mExCamera->setTightness (1.0f);
+			}
+		}
+
+		// Exit if we press Esc
+		if (mInputDevice->isKeyDown (KC_ESCAPE))
+			return false;
+
+		return true;
+	}
+};
+
+class SampleApplication : public ExampleApplication
+{
+protected:
+public:
+	SampleApplication()
+	{
+	}
+	~SampleApplication()
+	{
+	}
+
+protected:
+	// Just override the mandatory create scene method
+	void createScene(void)
+	{
+		// Set ambient light
+		mSceneMgr->setAmbientLight(ColourValue(1, 1, 1));
+        mSceneMgr->setSkyDome(true, "Examples/CloudySky", 5, 8);
+		// LIGHTS!!
+		// Create a point light
+		Light* l = mSceneMgr->createLight("MainLight");
+		// Accept default settings: point light, white diffuse, just set position
+		// NB I could attach the light to a SceneNode if I wanted it to move automatically with
+		//  other objects, but I don't
+		l->setType(Light::LT_DIRECTIONAL);
+		l->setDirection(-0.5, -0.5, 0);
+
+		// CAMERA!!
+		mCamera->setPosition (0, 0, 0);	// Required or else the camera will have an offset
+
+		// ACTION!!!
+		// Fill the scene with some razors
+		SceneNode *razorNode;
+		Entity *razorEntity;
+		for (unsigned int i = 0; i < 10; ++i) {
+			razorNode = mSceneMgr->getRootSceneNode ()->createChildSceneNode (StringConverter::toString (i), Vector3 (Math::RangeRandom (-1000, 1000), 0, Math::RangeRandom (-10000, 10000)));
+			razorEntity = mSceneMgr->createEntity (StringConverter::toString (i), "tudorhouse.mesh");
+			razorNode->attachObject (razorEntity);
+		}
+
+		// Main character
+		OgreCharacter *ogre = new OgreCharacter ("Ogre 1", mSceneMgr);
+		ExtendedCamera *exCamera = new ExtendedCamera ("Extended Camera", mSceneMgr, mCamera);
+
+
+		Plane plane( Vector3::UNIT_Y, -550 );
+		MeshManager::getSingleton().createPlane("ground",
+			ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
+			60000,60000,20,20,true,1,5,5,Vector3::UNIT_Z);
+		Entity *ent = mSceneMgr->createEntity( "GroundEntity", "ground" );
+		mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(ent);
+		ent->setMaterialName("Examples/Rockwall");
+		ent->setCastShadows(false);
+
+
+		// Frame listener to manage both character and camera updating and different camera modes
+		// Need to create it here as we want to change some parameters here, thus avoiding defining 
+		// ogre and exCamera as member variables
+		mFrameListener = new SampleListener (mWindow, mCamera);
+		static_cast<SampleListener *>(mFrameListener)->setCharacter (ogre);
+		static_cast<SampleListener *>(mFrameListener)->setExtendedCamera (exCamera);
+	}
+	void destroyScene(void)
+	{
+	}
+	void createFrameListener(void)
+	{
+		// This is where we instantiate our own frame listener
+//		mFrameListener= new SampleListener(mWindow, mCamera);
+		mRoot->addFrameListener(mFrameListener);
+	}
+};
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32
+#define WIN32_LEAN_AND_MEAN
+#include "windows.h"
+
+INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT )
+#else
+int main(int argc, char **argv)
+#endif
+{
+   // Create application object
+   SampleApplication app;
+
+   try {
+       app.go();
+   } catch( Exception& e ) {
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32 
+       MessageBoxA( NULL, e.getFullDescription().c_str(), "An exception has occured!", MB_OK |      MB_ICONERROR | MB_TASKMODAL);
+#else
+       fprintf(stderr, "An exception has occured: %s\n",
+               e.getFullDescription().c_str());
+#endif
+   }
+
+   return 0;
+}
+
+/*
+
+// Declare a subclass of the ExampleFrameListener class
+class MyListener : public ExampleFrameListener
+{
+public:
+    MyListener(RenderWindow* win, Camera* cam) : ExampleFrameListener(win, cam)
+    {
+    }
+
+    bool frameStarted(const FrameEvent& evt)
+    {
+        return ExampleFrameListener::frameStarted(evt);        
+    }
+
+    bool frameEnded(const FrameEvent& evt)
+    {
+        return ExampleFrameListener::frameEnded(evt);        
+    }
+};
+
+
+class TutorialFrameListener : public ExampleFrameListener
+{
+public:
+    TutorialFrameListener( RenderWindow* win, Camera* cam, SceneManager *sceneMgr )
+        : ExampleFrameListener(win, cam, false, false)
+    {
+        // key and mouse state tracking
+        mMouseDown = false;
+        mToggle = 0.0;
+
+        // Populate the camera and scene manager containers
+        mCamNode = cam->getParentSceneNode( )->getParentSceneNode( );
+        mSceneMgr = sceneMgr;
+
+        // set the rotation and move speed
+        mRotate = 0.13;
+        mMove = 250;
+    }
+
+    bool frameStarted(const FrameEvent &evt)
+    {
+        mInputDevice->capture();
+
+        bool currMouse = mInputDevice->getMouseButton( 0 );
+        if ( currMouse && ! mMouseDown )
+        {
+            Light *light = mSceneMgr->getLight( "Light1" );
+            light->setVisible( ! light->isVisible() );
+        } // if
+        mMouseDown = currMouse;
+        if ( mToggle >= 0.0f )
+           mToggle -= evt.timeSinceLastFrame;
+        if ( (mToggle < 0.0f) && mInputDevice->isKeyDown( KC_1 ) )
+        {
+            mToggle = 1.0f;
+            mCamera->getParentSceneNode()->detachObject( mCamera );
+            mCamNode = mSceneMgr->getSceneNode( "CamNode1" );
+            mSceneMgr->getSceneNode( "PitchNode1" )->attachObject( mCamera );
+        }
+        else if ( (mToggle < 0.0f) && mInputDevice->isKeyDown( KC_2 ) )
+        {
+            mToggle = 1.0f;
+            
+            mCamera->getParentSceneNode()->detachObject( mCamera );
+            mCamNode = mSceneMgr->getSceneNode( "CamNode2" );
+            mSceneMgr->getSceneNode( "PitchNode2" )->attachObject( mCamera );
+        }
+
+        Vector3 transVector = Vector3::ZERO;
+        if ( mInputDevice->isKeyDown( KC_UP ) || mInputDevice->isKeyDown( KC_W ) )
+            transVector.z -= mMove;
+        if ( mInputDevice->isKeyDown( KC_DOWN ) || mInputDevice->isKeyDown( KC_S ) )
+            transVector.z += mMove;
+        if ( mInputDevice->isKeyDown( KC_LEFT ) || mInputDevice->isKeyDown( KC_A ) )
+            transVector.x -= mMove;
+        if ( mInputDevice->isKeyDown( KC_RIGHT ) || mInputDevice->isKeyDown( KC_D ) )
+            transVector.x += mMove;
+        if ( mInputDevice->isKeyDown( KC_PGUP ) || mInputDevice->isKeyDown( KC_Q ) )
+            transVector.y += mMove;
+        if ( mInputDevice->isKeyDown( KC_PGDOWN ) || mInputDevice->isKeyDown( KC_E ) )
+            transVector.y -= mMove;
+
+        mCamNode->translate( mCamNode->getOrientation() * transVector * evt.timeSinceLastFrame );
+
+        if ( mInputDevice->getMouseButton( 1 ) )
+		{
+           mCamNode->yaw( Degree(-mRotate * mInputDevice->getMouseRelativeX()) );
+           //mCamNode->getChild( 0 )->pitch( Degree(-mRotate * mInputDevice->getMouseRelativeY()) );
+			mCamNode->pitch( Degree(-mRotate * mInputDevice->getMouseRelativeY()) );
+        }
+
+        return ! mInputDevice->isKeyDown( KC_ESCAPE );
+        //return ExampleFrameListener::frameStarted( evt );
+    }
+protected:
+    bool mMouseDown;       // Whether or not the left mouse button was down last frame
+    Real mToggle;          // The time left until next toggle
+    Real mRotate;          // The rotate constant
+    Real mMove;            // The movement constant
+    SceneManager *mSceneMgr;   // The current SceneManager
+    SceneNode *mCamNode;   // The SceneNode the camera is currently attached to
+};
+// Declare a subclass of the ExampleApplication class
+class SampleApp : public ExampleApplication 
+{
+public:
+   SampleApp() 
+   {
+   }
+
+protected:
+   
+	
+	virtual void createCamera(void)
+    {
+        // create the camera
+        mCamera = mSceneMgr->createCamera("PlayerCam");
+        // set its position, direction  
+        //mCamera->setPosition(Vector3(0,10,500));
+        //mCamera->lookAt(Vector3(0,0,0));
+
+        mCamera->setNearClipDistance(5);
+    }
+
+    virtual void createViewports(void)
+    {
+        // Create one viewport, entire window
+        Viewport* vp = mWindow->addViewport(mCamera);
+        vp->setBackgroundColour(ColourValue( 0,0,0));
+        // Alter the camera aspect ratio to match the viewport
+        mCamera->setAspectRatio(Real(vp->getActualWidth()) / Real(vp->getActualHeight())); 
+
+    }
+
+	// Define what is in the scene
+	void createScene(void)
+	{
+
+        mSceneMgr->setAmbientLight( ColourValue( 0.25, 0.25, 0.25 ) );
+        mSceneMgr->setSkyBox( true, "Examples/SpaceSkyBox" );
+
+        Entity *ent = mSceneMgr->createEntity( "Ninja", "ninja.mesh" );
+        SceneNode *node = mSceneMgr->getRootSceneNode()->createChildSceneNode( "NinjaNode" );
+        node->attachObject( ent );
+
+        Light *light = mSceneMgr->createLight( "Light1" );
+        light->setType( Light::LT_POINT );
+        light->setPosition( Vector3(250, 150, 250) );
+        light->setDiffuseColour( ColourValue::White );
+        light->setSpecularColour( ColourValue::White );
+
+        // Create the scene node
+        node = mSceneMgr->getRootSceneNode()->createChildSceneNode( "CamNode1", Vector3( -400, 200, 400 ) );
+        // Make it look towards the ninja
+        node->yaw( Degree(-45) );
+
+        // Create the pitch node
+        node = node->createChildSceneNode( "PitchNode1" );
+        node->attachObject( mCamera );
+
+        // create the second camera node/pitch node
+        node = mSceneMgr->getRootSceneNode()->createChildSceneNode( "CamNode2", Vector3( 0, 200, 400 ) );
+        node = node->createChildSceneNode( "PitchNode2" );
+
+
+/*	  //EU
+
+		mSceneMgr->setAmbientLight( ColourValue( 1, 1, 1 ) );
+
+        //mSceneMgr->setWorldGeometry( "terrain.cfg" );
+        mSceneMgr->setSkyBox( true, "Examples/SpaceSkyBox" );
+
+		Entity *ent = mSceneMgr->createEntity( "Razor", "razor.mesh" );
+	    SceneNode *node = mSceneMgr->getRootSceneNode()->createChildSceneNode( "RobotNode",  Vector3( 0, 50, 0 ) );
+		node->attachObject( ent );   
+
+		ent = mSceneMgr->createEntity( "Sphere", "geosphere8000.mesh" );
+	    node = mSceneMgr->getRootSceneNode()->createChildSceneNode( "SphereNode",  Vector3( 1000, 0, 0 ));
+	    node->attachObject( ent );
+
+		ent = mSceneMgr->createEntity( "Fisch", "fish.mesh" );
+	    node = mSceneMgr->getRootSceneNode()->createChildSceneNode( "FischNode",  Vector3( 0, 20, -100 ));
+	    node->attachObject( ent );
+		node->scale( 10, 10, 10 ); 
+
+
+		ent = mSceneMgr->createEntity( "ninja", "ninja.mesh" );
+	    node = mSceneMgr->getRootSceneNode()->createChildSceneNode( "NinjaNode",  Vector3( -500, 0, 0 ));
+	    node->attachObject( ent );
+
+		Plane plane( Vector3::UNIT_Y, 0 );
+		MeshManager::getSingleton().createPlane("ground",
+			ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
+			15000,15000,20,20,true,1,5,5,Vector3::UNIT_Z);
+		ent = mSceneMgr->createEntity( "GroundEntity", "ground" );
+		mSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject(ent);
+		ent->setMaterialName("Examples/Rockwall");
+		ent->setCastShadows(false);
+
+
+/*
+	}
+  
+   // Create new frame listener
+   void createFrameListener(void)
+   {
+       //mFrameListener = new MyListener(mWindow, mCamera);
+       //mRoot->addFrameListener(mFrameListener);
+       //Create the FrameListener
+       mFrameListener = new TutorialFrameListener(mWindow, mCamera, mSceneMgr);
+       mRoot->addFrameListener(mFrameListener);
+       //Show the frame stats overlay
+       mFrameListener->showDebugOverlay(true);
+   }
+};
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32 
+#define WIN32_LEAN_AND_MEAN 
+#include "windows.h" 
+INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT) 
+#else 
+int main(int argc, char **argv) 
+#endif 
+{
+    // Instantiate our subclass
+    SampleApp myApp;
+
+    try {
+        // ExampleApplication provides a go method, which starts the rendering.
+        myApp.go();
+    }
+    catch (Ogre::Exception& e) {
+#if OGRE_PLATFORM == OGRE_PLATFORM_WIN32 
+        MessageBoxA(NULL, e.getFullDescription().c_str(), "An exception has occured!", MB_OK | MB_ICONERROR | MB_TASKMODAL);
+#else
+        std::cerr << "Exception:\n";
+        std::cerr << e.getFullDescription().c_str() << "\n";
+#endif
+        return 1;
+    }
+
+return 0;
+}
+
+#ifdef __cplusplus
+}
+#endif */ 

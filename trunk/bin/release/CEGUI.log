@@ -1,0 +1,225 @@
+01/11/2006 21:44:16 (InfL1)	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+01/11/2006 21:44:16 (InfL1)	+                     Crazy Eddie's GUI System - Event log                    +
+01/11/2006 21:44:16 (InfL1)	+                          (http://www.cegui.org.uk/)                         +
+01/11/2006 21:44:16 (InfL1)	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+01/11/2006 21:44:16 (InfL1)	CEGUI::Logger singleton created.
+01/11/2006 21:44:16 (InfL1)	---- Begining CEGUI System initialisation ----
+01/11/2006 21:44:16 (InfL1)	CEGUI::ImagesetManager singleton created
+01/11/2006 21:44:16 (InfL1)	CEGUI::FontManager singleton created.
+01/11/2006 21:44:16 (InfL1)	CEGUI::WindowFactoryManager singleton created
+01/11/2006 21:44:16 (InfL1)	CEGUI::WindowManager singleton created
+01/11/2006 21:44:16 (InfL1)	CEGUI::SchemeManager singleton created.
+01/11/2006 21:44:16 (InfL1)	CEGUI::MouseCursor singleton created.
+01/11/2006 21:44:16 (InfL1)	CEGUI::GlobalEventSet singleton created.
+01/11/2006 21:44:16 (InfL1)	CEGUI::WidgetLookManager singleton created.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'DefaultWindow' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'DragContainer' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'ScrolledContainer' windows added.
+01/11/2006 21:44:16 (InfL1)	Window type alias named 'DefaultGUISheet' added for window type 'DefaultWindow'.
+01/11/2006 21:44:16 (InfL1)	CEGUI::System singleton created.
+01/11/2006 21:44:16 (InfL1)	---- CEGUI System initialisation completed ----
+01/11/2006 21:44:16 (InfL1)	---- Version 0.4.1 ----
+01/11/2006 21:44:16 (InfL1)	---- Renderer module is: CEGUI::OgreRenderer - Official Ogre based renderer module for CEGUI ----
+01/11/2006 21:44:16 (InfL1)	---- XML Parser module is: CEGUI::TinyXMLParser - Official tinyXML based parser module for CEGUI ----
+01/11/2006 21:44:16 (InfL1)	---- Scripting module is: None ----
+01/11/2006 21:44:16 (InfL1)	Attempting to load Scheme from file 'TaharezLookSkin.scheme'.
+01/11/2006 21:44:16 (InfL2)	Started creation of Scheme 'TaharezLookSkin' via XML file.
+01/11/2006 21:44:16 (InfL2)	Finished creation of Scheme 'TaharezLookSkin' via XML file.
+01/11/2006 21:44:16 (InfL2)	Loaded GUI scheme 'TaharezLookSkin' from data in file 'TaharezLookSkin.scheme'.
+01/11/2006 21:44:16 (InfL2)	---- Begining resource loading for GUI scheme 'TaharezLookSkin' ----
+01/11/2006 21:44:16 (InfL1)	Attempting to create an Imageset from the information specified in file 'TaharezLook.imageset'.
+01/11/2006 21:44:16 (InfL2)	Started creation of Imageset 'TaharezLook' via XML file.
+01/11/2006 21:44:16 (InfL2)	Finished creation of Imageset 'TaharezLook' via XML file.
+01/11/2006 21:44:16 (InfL1)	Attempting to create Font from the information specified in file 'bluehighway-12.font'.
+01/11/2006 21:44:16 (InfL2)	Started creation of Font 'BlueHighway-12' via XML file.
+01/11/2006 21:44:16 (InfL1)	Attempting to create Imageset 'BlueHighway-12_auto_glyph_images' with texture only.
+01/11/2006 21:44:16 (InfL2)	Font 'BlueHighway-12' now has the following glyphs defined: ' !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~'.
+01/11/2006 21:44:16 (InfL2)	Finished creation of Font 'BlueHighway-12' via XML file.
+01/11/2006 21:44:16 (InfL1)	Attempting to create Font from the information specified in file 'bluehighway-10.font'.
+01/11/2006 21:44:16 (InfL2)	Started creation of Font 'BlueHighway-10' via XML file.
+01/11/2006 21:44:16 (InfL1)	Attempting to create Imageset 'BlueHighway-10_auto_glyph_images' with texture only.
+01/11/2006 21:44:16 (InfL2)	Font 'BlueHighway-10' now has the following glyphs defined: ' !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~'.
+01/11/2006 21:44:16 (InfL2)	Finished creation of Font 'BlueHighway-10' via XML file.
+01/11/2006 21:44:16 (InfL1)	Attempting to create Font from the information specified in file 'bluehighway-8.font'.
+01/11/2006 21:44:16 (InfL2)	Started creation of Font 'BlueHighway-8' via XML file.
+01/11/2006 21:44:16 (InfL1)	Attempting to create Imageset 'BlueHighway-8_auto_glyph_images' with texture only.
+01/11/2006 21:44:16 (InfL2)	Font 'BlueHighway-8' now has the following glyphs defined: ' !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~'.
+01/11/2006 21:44:16 (InfL2)	Finished creation of Font 'BlueHighway-8' via XML file.
+01/11/2006 21:44:16 (InfL1)	===== Falagard 'root' element: look and feel parsing begins =====
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Button'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Button'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/RadioButton'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/RadioButton'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Checkbox'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Checkbox'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Editbox'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Editbox'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Titlebar'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Titlebar'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/FrameWindow'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/FrameWindow'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/ProgressBar'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/ProgressBar'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/AltProgressBar'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/AltProgressBar'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/VUMeter'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/VUMeter'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/SliderThumb'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/SliderThumb'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Slider'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Slider'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/HorizontalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/HorizontalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/HorizontalScrollbar'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/HorizontalScrollbar'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/VerticalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/VerticalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/VerticalScrollbar'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/VerticalScrollbar'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Listbox'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Listbox'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/ComboDropList'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/ComboDropList'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/ComboEditbox'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/ComboEditbox'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Combobox'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Combobox'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Spinner'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Spinner'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/StaticShared'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/StaticShared'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/StaticImage'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/StaticImage'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/StaticText'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/StaticText'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/ListHeaderSegment'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/ListHeaderSegment'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/ListHeader'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/ListHeader'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/MultiColumnList'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/MultiColumnList'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/MultiLineEditbox'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/MultiLineEditbox'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Tooltip'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Tooltip'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/ScrollablePane'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/ScrollablePane'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/TabButton'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/TabButton'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/TabPane'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/TabPane'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/TabControl'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/TabControl'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/MenuItem'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/MenuItem'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/PopupMenu'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/PopupMenu'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/Menubar'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/Menubar'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/LargeVerticalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/LargeVerticalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL2)	---> Start of definition for widget look 'TaharezLook/LargeVerticalScrollbar'.
+01/11/2006 21:44:16 (InfL2)	---< End of definition for widget look 'TaharezLook/LargeVerticalScrollbar'.
+01/11/2006 21:44:16 (InfL1)	===== Look and feel parsing completed =====
+01/11/2006 21:44:16 (InfL1)	No window factories specified for module 'CEGUIFalagardBase' - adding all available factories...
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Button' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Checkbox' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/ComboDropList' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Combobox' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Editbox' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/FrameWindow' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/ListHeader' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/ListHeaderSegment' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Listbox' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Menubar' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/MenuItem' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/MultiColumnList' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/MultiLineEditbox' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/PopupMenu' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/ProgressBar' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/RadioButton' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/ScrollablePane' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Scrollbar' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Slider' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Spinner' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/StaticImage' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/StaticText' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/SystemButton' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/TabButton' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/TabControl' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/TabPane' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Thumb' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Titlebar' windows added.
+01/11/2006 21:44:16 (InfL1)	WindowFactory for 'Falagard/Tooltip' windows added.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/AlternateProgressBar' using base type 'Falagard/ProgressBar' and LookN'Feel 'TaharezLook/AltProgressBar'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Button' using base type 'Falagard/Button' and LookN'Feel 'TaharezLook/Button'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Checkbox' using base type 'Falagard/Checkbox' and LookN'Feel 'TaharezLook/Checkbox'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/ComboDropList' using base type 'Falagard/ComboDropList' and LookN'Feel 'TaharezLook/ComboDropList'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/ComboEditbox' using base type 'Falagard/Editbox' and LookN'Feel 'TaharezLook/ComboEditbox'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Combobox' using base type 'Falagard/Combobox' and LookN'Feel 'TaharezLook/Combobox'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Editbox' using base type 'Falagard/Editbox' and LookN'Feel 'TaharezLook/Editbox'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/FrameWindow' using base type 'Falagard/FrameWindow' and LookN'Feel 'TaharezLook/FrameWindow'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/HorizontalScrollbar' using base type 'Falagard/Scrollbar' and LookN'Feel 'TaharezLook/HorizontalScrollbar'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/HorizontalScrollbarThumb' using base type 'Falagard/Thumb' and LookN'Feel 'TaharezLook/HorizontalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/LargeVerticalScrollbar' using base type 'Falagard/Scrollbar' and LookN'Feel 'TaharezLook/LargeVerticalScrollbar'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/LargeVerticalScrollbarThumb' using base type 'Falagard/Thumb' and LookN'Feel 'TaharezLook/LargeVerticalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/ListHeader' using base type 'Falagard/ListHeader' and LookN'Feel 'TaharezLook/ListHeader'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/ListHeaderSegment' using base type 'Falagard/ListHeaderSegment' and LookN'Feel 'TaharezLook/ListHeaderSegment'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Listbox' using base type 'Falagard/Listbox' and LookN'Feel 'TaharezLook/Listbox'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Menubar' using base type 'Falagard/Menubar' and LookN'Feel 'TaharezLook/Menubar'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/MenuItem' using base type 'Falagard/MenuItem' and LookN'Feel 'TaharezLook/MenuItem'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/MultiColumnList' using base type 'Falagard/MultiColumnList' and LookN'Feel 'TaharezLook/MultiColumnList'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/MultiLineEditbox' using base type 'Falagard/MultiLineEditbox' and LookN'Feel 'TaharezLook/MultiLineEditbox'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/PopupMenu' using base type 'Falagard/PopupMenu' and LookN'Feel 'TaharezLook/PopupMenu'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/ProgressBar' using base type 'Falagard/ProgressBar' and LookN'Feel 'TaharezLook/ProgressBar'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/RadioButton' using base type 'Falagard/RadioButton' and LookN'Feel 'TaharezLook/RadioButton'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/ScrollablePane' using base type 'Falagard/ScrollablePane' and LookN'Feel 'TaharezLook/ScrollablePane'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Slider' using base type 'Falagard/Slider' and LookN'Feel 'TaharezLook/Slider'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/SliderThumb' using base type 'Falagard/Thumb' and LookN'Feel 'TaharezLook/SliderThumb'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Spinner' using base type 'Falagard/Spinner' and LookN'Feel 'TaharezLook/Spinner'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/StaticImage' using base type 'Falagard/StaticImage' and LookN'Feel 'TaharezLook/StaticImage'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/StaticText' using base type 'Falagard/StaticText' and LookN'Feel 'TaharezLook/StaticText'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/SystemButton' using base type 'Falagard/SystemButton' and LookN'Feel 'TaharezLook/Button'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/TabButton' using base type 'Falagard/TabButton' and LookN'Feel 'TaharezLook/TabButton'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/TabControl' using base type 'Falagard/TabControl' and LookN'Feel 'TaharezLook/TabControl'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/TabPane' using base type 'Falagard/TabPane' and LookN'Feel 'TaharezLook/TabPane'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Titlebar' using base type 'Falagard/Titlebar' and LookN'Feel 'TaharezLook/Titlebar'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/Tooltip' using base type 'Falagard/Tooltip' and LookN'Feel 'TaharezLook/Tooltip'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/VerticalScrollbar' using base type 'Falagard/Scrollbar' and LookN'Feel 'TaharezLook/VerticalScrollbar'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/VerticalScrollbarThumb' using base type 'Falagard/Thumb' and LookN'Feel 'TaharezLook/VerticalScrollbarThumb'.
+01/11/2006 21:44:16 (InfL1)	Creating falagard mapping for type 'TaharezLook/VUMeter' using base type 'Falagard/ProgressBar' and LookN'Feel 'TaharezLook/VUMeter'.
+01/11/2006 21:44:16 (InfL2)	---- Resource loading for GUI scheme 'TaharezLookSkin' completed ----
+01/11/2006 21:44:16 (InfL2)	---- Beginning loading of GUI layout from 'Tutorial Gui.xml' ----
+01/11/2006 21:44:16 (InfL2)	Window 'Tutorial Gui' of type 'DefaultWindow' has been created.
+01/11/2006 21:44:16 (InfL2)	Window 'Quit' of type 'TaharezLook/Button' has been created.
+01/11/2006 21:44:16 (InfL2)	Assigning LookNFeel 'TaharezLook/Button' to window 'Quit'.
+01/11/2006 21:44:16 (InfL1)	---- Successfully completed loading of GUI layout from 'Tutorial Gui.xml' ----
+01/11/2006 21:45:45 (InfL2)	Window 'Quit' has been added to dead pool.
+01/11/2006 21:45:45 (InfL2)	Window 'Tutorial Gui' has been added to dead pool.
+01/11/2006 21:45:45 (InfL1)	---- Begining CEGUI System destruction ----
+01/11/2006 21:45:45 (InfL1)	---- Begining cleanup of GUI Scheme system ----
+01/11/2006 21:45:45 (InfL2)	---- Begining resource cleanup for GUI scheme 'TaharezLookSkin' ----
+01/11/2006 21:45:45 (InfL2)	Imageset 'BlueHighway-12_auto_glyph_images' has been destroyed.
+01/11/2006 21:45:45 (InfL1)	Font 'BlueHighway-12' has been destroyed.
+01/11/2006 21:45:45 (InfL2)	Imageset 'BlueHighway-10_auto_glyph_images' has been destroyed.
+01/11/2006 21:45:45 (InfL1)	Font 'BlueHighway-10' has been destroyed.
+01/11/2006 21:45:45 (InfL2)	Imageset 'BlueHighway-8_auto_glyph_images' has been destroyed.
+01/11/2006 21:45:45 (InfL1)	Font 'BlueHighway-8' has been destroyed.
+01/11/2006 21:45:45 (InfL2)	Imageset 'TaharezLook' has been destroyed.
+01/11/2006 21:45:45 (InfL2)	---- Resource cleanup for GUI scheme 'TaharezLookSkin' completed ----
+01/11/2006 21:45:45 (InfL2)	GUI scheme 'TaharezLookSkin' has been unloaded.
+01/11/2006 21:45:45 (InfL1)	Scheme 'TaharezLookSkin' has been unloaded.
+01/11/2006 21:45:45 (InfL1)	CEGUI::SchemeManager singleton destroyed.
+01/11/2006 21:45:45 (InfL1)	CEGUI::WindowManager singleton destroyed
+01/11/2006 21:45:45 (InfL1)	CEGUI::WindowFactoryManager singleton destroyed
+01/11/2006 21:45:45 (InfL1)	CEGUI::WidgetLookManager singleton destroyed.
+01/11/2006 21:45:45 (InfL1)	---- Begining cleanup of Font system ----
+01/11/2006 21:45:45 (InfL1)	CEGUI::FontManager singleton destroyed.
+01/11/2006 21:45:45 (InfL1)	CEGUI::MouseCursor singleton destroyed.
+01/11/2006 21:45:45 (InfL1)	---- Begining cleanup of Imageset system ----
+01/11/2006 21:45:45 (InfL1)	CEGUI::ImagesetManager singleton destroyed
+01/11/2006 21:45:45 (InfL1)	CEGUI::GlobalEventSet singleton destroyed.
+01/11/2006 21:45:45 (InfL1)	CEGUI::System singleton destroyed.
+01/11/2006 21:45:45 (InfL1)	---- CEGUI System destruction completed ----
+01/11/2006 21:45:45 (InfL1)	CEGUI::Logger singleton destroyed.

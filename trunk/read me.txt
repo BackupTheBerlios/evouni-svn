@@ -1,0 +1,5 @@
+Hello folks,
+
+the application may be found at bin/release/EUClient.exe
+
+for more information visit http://evolvinguniverse.net

@@ -1,0 +1,143 @@
+
+material wurmloch/BlackHole
+{
+	technique
+	{
+		pass
+		{
+			diffuse 1 1 1 0.5
+			scene_blend alpha_blend
+			depth_write off
+
+			texture_unit
+			{
+				texture_alias 0
+				texture BAJORHOL.PNG
+			}
+		}
+
+	}
+
+}
+
+material wurmloch/AST5
+{
+	technique
+	{
+		pass
+		{
+
+			texture_unit
+			{
+				texture_alias 0
+				texture AST5.JPG
+			}
+		}
+
+	}
+
+}
+
+material wurmloch/AST6
+{
+	technique
+	{
+		pass
+		{
+
+			texture_unit
+			{
+				texture_alias 0
+				texture AST6.JPG
+			}
+		}
+
+	}
+
+}
+
+material wurmloch/AST7
+{
+	technique
+	{
+		pass
+		{
+
+			texture_unit
+			{
+				texture_alias 0
+				texture AST7.JPG
+			}
+		}
+
+	}
+
+}
+
+material wurmloch/AST4
+{
+	technique
+	{
+		pass
+		{
+
+			texture_unit
+			{
+				texture_alias 0
+				texture AST4.JPG
+			}
+		}
+
+	}
+
+}
+
+material wurmloch/AST1
+{
+	technique
+	{
+		pass
+		{
+
+			texture_unit
+			{
+				texture_alias 0
+				texture AST1.JPG
+			}
+		}
+
+	}
+
+}
+
+material wurmloch/AST2
+{
+	technique
+	{
+		pass
+		{
+
+			texture_unit
+			{
+				texture_alias 0
+				texture AST2.JPG
+			}
+		}
+
+	}
+
+}
+
+material wurmloch/10_-_Default
+{
+	technique
+	{
+		pass
+		{
+			ambient 0 0 0 1
+			diffuse 0 0 0 1
+		}
+
+	}
+
+}
