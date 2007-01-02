@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<GUILayout>
+    <Window Type="DefaultWindow" Name="Tutorial Gui">
+        <Window Type="TaharezLook/Button" Name="Quit">
+             <Property Name="AbsoluteRect" Value="l:224.000000 t:216.000000 r:416.000000 b:264.000000" />
+             <Property Name="RelativeRect" Value="l:0.000000 t:0.000000 r:0.10000 b:0.050000" />
+             <Property Name="Text" Value="Quit" />
+             </Window>
+        </Window>
+</GUILayout>
